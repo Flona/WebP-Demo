@@ -108,6 +108,7 @@
 	import util from '../../common/js/util'
     import NProgress from 'nprogress'
     import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../constants/API'
+    import { CONST_ADD_SUCCESS,CONST_DELETE_SUCCESS } from '../../constants/TEXT'
 
 	export default {
 		data() {
@@ -201,7 +202,7 @@
 						NProgress.done();
 						this.$notify({
 							title: '成功',
-							message: '删除成功',
+							message: CONST_DELETE_SUCCESS,
 							type: 'success'
 						});
 						this.getUsers();
@@ -240,7 +241,7 @@
 								NProgress.done();
 								this.$notify({
 									title: '成功',
-									message: '提交成功',
+									message: 'CONST_ADD_SUCCESS',
 									type: 'success'
 								});
 								this.$refs['editForm'].resetFields();
@@ -265,7 +266,7 @@
 								NProgress.done();
 								this.$notify({
 									title: '成功',
-									message: '提交成功',
+									message: 'CONST_ADD_SUCCESS',
 									type: 'success'
 								});
 								this.$refs['addForm'].resetFields();

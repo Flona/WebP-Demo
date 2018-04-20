@@ -22,11 +22,34 @@ export const testPostApi = (params: object, id: string) => {
     return sendPost(`${deletUrl}`, params);
 };
 
-
 /**
-* table data
+* 结合mock.js使用，便于拦截，参考，实际使用按下方规则
 * */
 
+export const getUserListPage = params => {
+    return axios.get(`${base}/user/listpage`, { params: params });
+};
+
+export const removeUser = params => {
+    return axios.get(`${base}/user/remove`, { params: params });
+};
+
+export const batchRemoveUser = params => {
+    return axios.get(`${base}/user/batchremove`, { params: params });
+};
+
+export const editUser = params => {
+    return axios.get(`${base}/user/edit`, { params: params });
+};
+
+export const addUser = params => {
+    return axios.get(`${base}/user/add`, { params: params });
+};
+
+/**
+* table data demo
+ * 实际使用按此规则
+* */
 /*
 export const getUserListPage = (params: object) => {
     return sendGet(`${base}/user/listpage`, { params: params })
@@ -48,12 +71,3 @@ export const addUser = (params: object) => {
     return sendGet(`${base}/user/add`, { params: params })
 }*/
 
-export const getUserListPage = params => { return axios.get(`${base}/user/listpage`, { params: params }); };
-
-export const removeUser = params => { return axios.get(`${base}/user/remove`, { params: params }); };
-
-export const batchRemoveUser = params => { return axios.get(`${base}/user/batchremove`, { params: params }); };
-
-export const editUser = params => { return axios.get(`${base}/user/edit`, { params: params }); };
-
-export const addUser = params => { return axios.get(`${base}/user/add`, { params: params }); };

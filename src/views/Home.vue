@@ -18,7 +18,9 @@
 		<el-col :span="24" class="main">
 			<aside>
 				<el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-					theme="dark" unique-opened router>
+						 background-color="#545c64"
+						 text-color="#fff"
+						 active-text-color="#ffd04b" unique-opened router>
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
 						<el-submenu :index="index+''" v-if="!item.leaf">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
