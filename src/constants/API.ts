@@ -10,20 +10,17 @@ let deletUrl = 'https://jsonplaceholder.typicode.com/posts/'
 let base = ''
 
 export const testGetApi = (params: object, id: string) => {
-    return sendGet(`${getUrl}`, params)
-}
+    return sendGet(`${getUrl}`, params);
+};
 export const testDeleteApi = (params: object, id: string) => {
-    return sendDelete(`${deletUrl}${id}`, params)
-}
+    return sendDelete(`${deletUrl}${id}`, params);
+};
 export const testPutApi = (params: object, id: string) => {
-    return sendPut(`${deletUrl}${id}`, params)
-}
+    return sendPut(`${deletUrl}${id}`, params);
+};
 export const testPostApi = (params: object, id: string) => {
-    return sendPost(`${deletUrl}`, params)
-}
-export const getUserList = (params: object) => {
-    return sendGet(`${base}/user/list`, { params: params })
-}
+    return sendPost(`${deletUrl}`, params);
+};
 
 
 /**
