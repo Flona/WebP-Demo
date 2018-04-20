@@ -3,7 +3,9 @@ import App from "./App.vue"
 import router from "./router"
 import '@assets/css/common.scss'
 import Element from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import Mock from './mock'
+Mock.bootstrap();
+import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 
 Vue.use(Element)

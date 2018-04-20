@@ -2,11 +2,11 @@
 	<el-row class="container">
 		<el-col :span="24" class="header">
 			<el-col :span="20" class="logo">
-				<span>TAL<i class="txt">ADMIN</i></span>
+				<img src="../assets/img/logo.png" /> <span><i class="txt">TAL</i></span>
 			</el-col>
 			<el-col :span="4" class="userinfo">
 				<el-dropdown trigger="click">
-					<span class="el-dropdown-link userinfo-inner">{{sysUserName}}</span>
+					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" /> {{sysUserName}}</span>
 					<el-dropdown-menu slot="dropdown">
 						<el-dropdown-item>我的消息</el-dropdown-item>
 						<el-dropdown-item>设置</el-dropdown-item>
@@ -53,8 +53,8 @@
 	export default {
 		data() {
 			return {
-				sysUserName: '',
-				sysUserAvatar: '',
+				sysUserName: "John",
+				sysUserAvatar: 'https://avatars0.githubusercontent.com/u/35988190?s=400&u=5f4b4c8203e44fd9cf9230cb9ef7446de8ea29a1&v=4',
 				form: {
 					name: '',
 					region: '',
