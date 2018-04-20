@@ -1,3 +1,4 @@
+import axios from "axios"
 import http from "./http"
 /**
  * Get请求
@@ -42,4 +43,14 @@ export function sendDelete(url: string, params: object) {
   return http.delete(url, { params }).then(response => {
     return response.data
   })
+}
+
+/**
+ * All 请求
+ * @param iterable 是一个可以迭代的参数如数组等
+ * @param callback 要等到所有请求都完成才会执行
+ */
+export function sendAll(iterable: any[], callback:()=>Promise<any>) {
+  return axios.all(iterable).then(
+    axios.spread(callback))
 }
