@@ -15,9 +15,7 @@ Spring 1
 - [x] Default Loading - template index.html (Vincent) - done
 - [x] Router history mode (Vincent) - done
 - [x] ConstantsFolder - Text/URL/API - done
-- [x] empty value - should be null, not undefined
 - [x] ENV Conf - done
-- [x] Git Flow tags/branchs
 - [x] Demo page (John)
 
 Low Pri:
@@ -26,7 +24,8 @@ Low Pri:
 >~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Sprint 2
-
+- [x] empty value - should be null, not undefined
+- [x] Git Flow tags/branchs
 - [x] Git Commit template (Vincent)
 - [] Common Components
 - [] UtilsFolder - asyncLoader

@@ -1,4 +1,4 @@
-import http from "./http"
+import http from "./http";
 /**
  * Get请求
  * @param { String } url
@@ -7,8 +7,8 @@ import http from "./http"
  */
 export function sendGet(url: string, params: object, mute: boolean = false) {
   return http.get(url, { params }).then(response => {
-    return response.data
-  })
+    return response.data;
+  });
 }
 
 /**
@@ -18,8 +18,8 @@ export function sendGet(url: string, params: object, mute: boolean = false) {
  */
 export function sendPost(url: string, data: object) {
   return http.post(url, data).then(response => {
-    return response.data
-  })
+    return response.data;
+  });
 }
 
 /**
@@ -29,8 +29,8 @@ export function sendPost(url: string, data: object) {
  */
 export function sendPut(url: string, data: object) {
   return http.put(url, data).then(response => {
-    return response.data
-  })
+    return response.data;
+  });
 }
 
 /**
@@ -40,6 +40,6 @@ export function sendPut(url: string, data: object) {
  */
 export function sendDelete(url: string, params: object) {
   return http.delete(url, { params }).then(response => {
-    return response.data
-  })
+    return response.data;
+  });
 }
