@@ -42,3 +42,100 @@
     - 作为对自己的提醒, 比如 // TODO: 这里要做验证  // FIXME: 这有个bug,明天改
 
 - 对于第三方lib的引入,团队内多沟通, 会有更好的方法,例如lodash引入的时候可以针对某一函数引入,以减小打包体积
+
+- layout 使用以及示例:
+脚手架默认带有两种layout: 1. 左侧导航(sidebar) 2. 上面导航(navbar)
+
+```js
+{
+      path: "/",
+      // 这里是使用1类型的布局组件
+      component: () => import("./layout/SidebarLayout/index.vue"),
+      children: [
+        {
+          path: "",
+          components: {
+              // default为内容区域的组件
+            default: () => import("./views/Home.vue"),
+            // sidebar为左侧导航组件
+            sidebar: () => import("./components/common/Sidebar/index.vue")
+          }
+        }
+      ]
+    },
+    {
+      path: "/about",
+            // 这里是使用2类型的布局组件
+      component: () => import("./layout/NavbarLayout/index.vue"),
+      children: [
+        {
+          path: "",
+          components: {
+                       // default为内容区域的组件
+            default: () => import("./views/About.vue"),
+                       // nav为上面导航的组件
+            nav: () => import("./components/common/Navbar/index.vue")
+          }
+        }
+      ]
+    }
+```
+
+- 用户登录验证场景. 常规场景:
+  - 当用户进入某一个页面,需判断此用户登录信息是否过期.过期则跳到登录页,未过期则进入页面正常走流程
+
+代码示例讲解如下:
+
+```js
+// 添加路由拦截器
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    let logined = false
+    try {
+      // auth模块可以定制化验证的方法
+      logined = await Auth.isLogined()
+      if (logined) {
+        // 如果判断是已登录情况,则继续
+        next()
+      } else {
+        // 假设这里的about页是未登录情况下跳转的地方
+        next({
+          path: "/about"
+        })
+      }
+    } catch (error) {
+      // 如果请求报错,一般是500的时候,应该跳转报错页面
+      next({
+        replace: true,
+        name: "notfound",
+        params: { "0": to.path }
+      })
+    }
+  } else {
+    next()
+  }
+})
+```
+对需要验证的路由地址需要添加meta参数
+```js
+    {
+      path: "/auth",
+      name: "auth",
+      component: () => import("./views/Test.vue"),
+      meta: { requiresAuth: true }  //这个说明 /auth这个路由需要验证
+    },
+```
+
+Auth的登录方法
+
+```js  
+// 里面怎么处理按不同项目自定义,但规定要返回promise
+ static isLogined(): Promise<any> {
+    // 你可以这里做请求做用户验证
+
+    return Promise.reject(true)
+    // return Promise.resolve(false)
+  }
+```

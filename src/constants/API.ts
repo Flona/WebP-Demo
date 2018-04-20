@@ -1,21 +1,31 @@
 // api 都集中在这里
+<<<<<<< HEAD
 import { sendGet, sendPost, sendDelete, sendPut, sendAll } from "../utils/base"
 let getUrl = "http://www.zhiyinlou.com/theme/index.css"
+=======
+import { sendGet, sendPost, sendDelete, sendPut } from "../utils/base";
+let getUrl = "http://www.zhiyinlou.com/theme/index.css";
+>>>>>>> 84797fc1fc26e6839bb88364e9995e807e68b882
 // https://www.baidu.com/s?wd=%E6%B5%8B%E8%AF%95
-let deletUrl = "https://jsonplaceholder.typicode.com/posts/"
+let deletUrl = "https://jsonplaceholder.typicode.com/posts/";
 // https://jsonplaceholder.typicode.com/posts/1
 export const testGetApi = (params: object, id: string) => {
-  return sendGet(`${getUrl}`, params)
-}
+  return sendGet(`${getUrl}`, params);
+};
 export const testDeleteApi = (params: object, id: string) => {
-  return sendDelete(`${deletUrl}${id}`, params)
-}
+  return sendDelete(`${deletUrl}${id}`, params);
+};
 export const testPutApi = (params: object, id: string) => {
-  return sendPut(`${deletUrl}${id}`, params)
-}
+  return sendPut(`${deletUrl}${id}`, params);
+};
 export const testPostApi = (params: object, id: string) => {
+<<<<<<< HEAD
   return sendPost(`${deletUrl}`, params)
 }
 export const testAllApi = (iterable: any[], callback:()=>Promise<any>) => {
   return sendAll(iterable, callback)
 }
+=======
+  return sendPost(`${deletUrl}`, params);
+};
+>>>>>>> 84797fc1fc26e6839bb88364e9995e807e68b882
