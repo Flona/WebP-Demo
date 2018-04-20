@@ -6,20 +6,16 @@
     "serve": "vue-cli-service serve --open ",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "version":"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "axios-mock-adapter": "^1.7.1",
     "element-ui": "^2.3.4",
-    "font-awesome": "^4.7.0",
-    "nprogress": "^0.2.0",
     "qs": "^6.5.1",
     "vue": "^2.5.13",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^6.0.0",
-    "vue-router": "^3.0.1",
-    "mockjs": "^1.0.1-beta3"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@types/qs": "^6.5.1",

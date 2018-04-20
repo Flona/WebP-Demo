@@ -19,10 +19,10 @@
 			</el-col>
 		</el-form-item>
 		<el-form-item label="即时配送">
-			<el-switch on-text="" off-text="" v-model="form.delivery"></el-switch>
+			<el-switch active-text="" inactive-text=""></el-switch>
 		</el-form-item>
 		<el-form-item label="活动性质">
-			<el-checkbox-group v-model="form.type">
+			<el-checkbox-group>
 				<el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
 				<el-checkbox label="地推活动" name="type"></el-checkbox>
 				<el-checkbox label="线下主题活动" name="type"></el-checkbox>
@@ -40,32 +40,31 @@
 		</el-form-item>
 		<el-form-item>
 			<el-button type="primary">立即创建</el-button>
-			<el-button @click.native.prevent>取消</el-button>
+			<el-button>取消</el-button>
 		</el-form-item>
 	</el-form>
 </template>
 
 <script>
 	export default {
-		data() {
-			return {
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
-				}
-			}
-		},
-		methods: {
-			onSubmit() {
-				console.log('submit!');
-			}
-		}
+	  data() {
+	    return {
+	      form: {
+	        name: "",
+	        region: "",
+	        date1: "",
+	        date2: "",
+	        delivery: false,
+	        type: [],
+	        resource: "",
+	        desc: ""
+	      }
+	    }
+	  },
+	  methods: {
+	    onSubmit() {
+	      console.log("submit!")
+	    }
+	  }
 	}
-
 </script>

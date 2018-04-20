@@ -1,6 +1,6 @@
 <template>
 	<el-row class="container">
-		<el-col :span="24" class="header">
+		<!-- <el-col :span="24" class="header">
 			<el-col :span="20" class="logo">
 				<img src="../assets/img/logo.png" /> <span><i class="txt">TAL</i></span>
 			</el-col>
@@ -22,11 +22,11 @@
 						 text-color="#fff"
 						 active-text-color="#ffd04b" unique-opened router>
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<el-submenu :index="index+''" v-if="!item.leaf">
+						<el-submenu :index="index+''" v-if="!item.leaf"  :key="index+''">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-							<el-menu-item v-for="child in item.children" :index="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
+							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
 						</el-submenu>
-						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" :key="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
 					</template>
 					</el-menu>
 			</aside>
@@ -35,7 +35,7 @@
 					<el-col :span="24" class="breadcrumb-container">
 						<strong class="title">{{$route.name}}</strong>
 						<el-breadcrumb separator="/" class="breadcrumb-inner">
-							<el-breadcrumb-item v-for="item in $route.matched">
+							<el-breadcrumb-item v-for="item in $route.matched" :key="item.name">
 								{{ item.name }}
 							</el-breadcrumb-item>
 						</el-breadcrumb>
@@ -47,7 +47,8 @@
 					</el-col>
 				</div>
 			</section>
-		</el-col>
+		</el-col> -->
+		this is home
 	</el-row>
 </template>
 

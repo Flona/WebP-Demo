@@ -1,63 +1,69 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+// import Vue from "vue"
+// import Router from "vue-router"
 
-import Table from './views/demo/Table.vue'
-import Form from './views/demo/Form.vue'
-import OtherPage from './views/nav/OtherPage.vue'
+// import Table from "./views/demo/Table.vue"
+// import Form from "./views/demo/Form.vue"
+// import OtherPage from "./views/nav/OtherPage.vue"
 
-Vue.use(Router)
+// Vue.use(Router)
 
-export default new Router({
-    mode:"history",
-    routes: [
-        {
-            path: '/',
-            component:  () => import('./views/Home.vue'),
-            name: '导航一',
-            children: [
-                { path: '/table', component: Table, name: 'Table' },
-                { path: '/form', component: Form, name: 'Form' },
-            ]
-        },
-        {
-            path: '/',
-            component:  () => import('./views/Home.vue'),
-            name: '导航二',
-            children: [
-                { path: '/page1', component: OtherPage, name: '页面1' },
-                { path: '/page2', component: OtherPage, name: '页面2' }
-            ]
-        },
-        {
-            path: '/',
-            component:  () => import('./views/Home.vue'),
-            name: '',
-            leaf:true,
-            children: [
-                { path: '/test', component: () => import('./views/Test.vue'), name: 'test' }
-            ]
-        }
-    ],
-})
+// export default new Router({
+//   mode: "history",
+//   routes: [
+//     {
+//       path: "/",
+//       component: () => import("./views/Home.vue"),
+//       name: "导航一",
+//       children: [
+//         { path: "/table", component: Table, name: "Table" },
+//         { path: "/form", component: Form, name: "Form" }
+//       ]
+//     },
+//     {
+//       path: "/",
+//       component: () => import("./views/Home.vue"),
+//       name: "导航二",
+//       children: [
+//         { path: "/page1", component: OtherPage, name: "页面1" },
+//         { path: "/page2", component: OtherPage, name: "页面2" }
+//       ]
+//     },
+//     {
+//       path: "/",
+//       component: () => import("./views/Home.vue"),
+//       name: "",
+//       props: { leaf: true },
 
+//       children: [
+//         {
+//           path: "/test",
+//           component: () => import("./views/Test.vue"),
+//           name: "test"
+//         }
+//       ]
+//     }
+//   ]
+// })
 
-/*
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from "vue"
+import Router from "vue-router"
+import Auth from "@/utils/auth"
 // import Home from ''
 // import About from './views/About.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/home",
+      props: { iconCls: "el-icon-location", label: "Home页面" },
       component: () => import("./layout/SidebarLayout/index.vue"),
       children: [
         {
           path: "",
+          props: { label: "Homedsd页面" },
           components: {
             default: () => import("./views/Home.vue"),
             sidebar: () => import("./components/common/Sidebar/index.vue")
@@ -66,11 +72,43 @@ export default new Router({
       ]
     },
     {
-      path: "/about",
-      component: () => import("./layout/NavbarLayout/index.vue"),
+      path: "/table",
+      component: () => import("./layout/SidebarLayout/index.vue"),
+      props: { iconCls: "el-icon-location", label: "表格模块" },
       children: [
         {
           path: "",
+          props: { label: "表格child模块名字" },
+          components: {
+            default: () => import("./views/demo/Table.vue"),
+            sidebar: () => import("./components/common/Sidebar/index.vue")
+          }
+        }
+      ]
+    },
+    {
+      path: "/form",
+      component: () => import("./layout/SidebarLayout/index.vue"),
+      props: { iconCls: "el-icon-location", label: "表格模块" },
+      children: [
+        {
+          path: "",
+          props: { label: "form child模块名字" },
+          components: {
+            default: () => import("./views/demo/Form.vue"),
+            sidebar: () => import("./components/common/Sidebar/index.vue")
+          }
+        }
+      ]
+    },
+    {
+      path: "/about",
+      component: () => import("./layout/NavbarLayout/index.vue"),
+      props: { iconCls: "el-icon-location", label: "about模块" },
+      children: [
+        {
+          path: "",
+          props: { iconCls: "el-icon-location", label: "about 页" },
           components: {
             default: () => import("./views/About.vue"),
             nav: () => import("./components/common/Navbar/index.vue")
@@ -80,20 +118,18 @@ export default new Router({
     },
     {
       path: "/test",
-      name: "test",
+      props: { iconCls: "el-icon-location", label: "test页无子模块" },
       component: () => import("./views/Test.vue")
     },
     {
       path: "*",
       name: "notfound",
-      component: () => import("./components/common/NotFound/index.vue")
+      component: () => import("./views/404.vue")
     }
   ]
-});
-*/
+})
 
-
-/*router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
@@ -106,7 +142,7 @@ export default new Router({
       } else {
         // 假设这里的about页是未登录情况下跳转的地方
         next({
-          path: "/about"
+          path: "/login"
         })
       }
     } catch (error) {
@@ -122,4 +158,4 @@ export default new Router({
   }
 })
 
-export default router*/
+export default router
