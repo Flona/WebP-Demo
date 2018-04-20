@@ -65,7 +65,7 @@ http.interceptors.response.use(
         type: "error",
         title: HTTP_STATUS_TITLE_404,
         message: HTTP_STATUS_MSG_404,
-        duration: 0
+        duration: 3000   // 弹框自动消失时间
       });
       return { ...config, data: null };
     } else if (config.status === 401) {
@@ -73,7 +73,7 @@ http.interceptors.response.use(
         type: "error",
         title: HTTP_STATUS_TITLE_401,
         message: HTTP_STATUS_MSG_401,
-        duration: 0
+        duration: 3000   // 弹框自动消失时间
       });
       return { ...config, data: null };
     } else {
@@ -85,7 +85,7 @@ http.interceptors.response.use(
       type: "error",
       title: HTTP_STATUS_TITLE_5XX,
       message: HTTP_STATUS_MSG_5XX,
-      duration: 0
+      duration: 3000   // 弹框自动消失时间
     });
     return Promise.reject(error.response);
   }
@@ -105,7 +105,7 @@ function isReturn(config: AxiosResponse<any>) {
       type: "error",
       title: "哎呀",
       message: config.data.errmsg,
-      duration: 0
+      duration: 3000   // 弹框自动消失时间
     });
     return { ...config, data: null };      // 业务处理时判断data为空即可不做任何处理
   } else {
