@@ -2,49 +2,61 @@
   <div class="test">
   </div>
 </template>
-
 <script>
-import {
-  testGetApi,
-  testDeleteApi,
-  testPutApi,
-  testPostApi
-} from "../constants/API";
-export default {
-  data() {
-    return {};
-  },
-  created() {
-    this.handleGetTest();
-    this.handleDeleteTest();
-    this.handlePutTest();
-    this.handlePostTest();
-  },
-  methods: {
-    handleGetTest() {
-      testGetApi({});
+  import {testGetApi, testDeleteApi, testPutApi, testPostApi, testAllApi} from '../constants/API'
+  export default {
+    data () {
+      return {
+      }
     },
-    handleDeleteTest() {
-      testDeleteApi({}, "1").then(res => {
-        if (res) {
-          console.log("handleDeleteTest", res);
-        }
-      });
+    created () {
+      // this.handleGetTest()
+      // this.handleDeleteTest()
+      // this.handlePutTest()
+      // this.handlePostTest()
+      this.handleAllTest()
     },
-    handlePutTest() {
-      testPutApi({ title: "foo", body: "bar", userId: 1 }, "1").then(res => {
-        if (res) {
-          console.log("handlePutTest", res);
-        }
-      });
-    },
-    handlePostTest() {
-      testPostApi({ title: "foo", body: "bar", userId: 1 }, "1").then(res => {
-        if (res) {
-          console.log("handlePostTest", res);
-        }
-      });
+    methods: {
+      handleGetTest() {
+        testGetApi({})
+      },
+      handleDeleteTest() {
+        testDeleteApi({},'1').then(res => {
+          if (res) {
+            console.log('handleDeleteTest',res)
+          }
+        })
+      },
+      handlePutTest() {
+        testPutApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+          if (res) {
+            console.log('handlePutTest',res)
+          }
+        })
+      },
+      handlePostTest() {
+        testPostApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+          if (res) {
+            console.log('handlePostTest',res)
+          }
+        })
+      },
+      returnPut() {
+        return testPutApi({title: 'foo',body: 'bar',userId: 1},'1')
+      },
+      returnDelete() {
+        return testDeleteApi({},'1')
+      },
+      handleAllTest() {
+        testAllApi([testGetApi({}),this.returnPut(),this.returnDelete(),testPostApi({title: 'foo',body: 'bar',userId: 1},'1')],function (Get,Put,Delete,Post){
+          if (Get && Put && Post && Delete) {
+            console.log('Get',Get)
+            console.log('Put',Put)
+            console.log('Delete',Delete)
+            console.log('Post',Post)
+          }
+        })
+      }
     }
-  }
-};
+  };
 </script>

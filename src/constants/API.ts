@@ -3,12 +3,10 @@
  * https://jsonplaceholder.typicode.com/posts/1
  * */
 import axios from "axios"
-import { sendGet, sendPost, sendDelete, sendPut } from "../utils/base"
+import { sendGet, sendPost, sendDelete, sendPut, sendAll } from "../utils/base"
 let getUrl = "http://www.zhiyinlou.com/theme/index.css"
-let deletUrl = "https://jsonplaceholder.typicode.com/posts/"
-//这是域名
+let deletUrl = "https://jsonplaceholder.typicode.com/posts/";
 let base = ""
-
 export const testGetApi = (params: object, id: string) => {
   return sendGet(`${getUrl}`, params)
 }
@@ -20,6 +18,9 @@ export const testPutApi = (params: object, id: string) => {
 }
 export const testPostApi = (params: object, id: string) => {
   return sendPost(`${deletUrl}`, params)
+}
+export const testAllApi = (iterable: any[], callback:()=>Promise<any>) => {
+  return sendAll(iterable, callback)
 }
 
 /**
