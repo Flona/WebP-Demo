@@ -1,11 +1,12 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from "vue"
+import Router from "vue-router"
+import Auth from "@/utils/auth"
 // import Home from ''
 // import About from './views/About.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes: [
     {
@@ -35,6 +36,12 @@ export default new Router({
       ]
     },
     {
+      path: "/auth",
+      name: "auth",
+      component: () => import("./views/Test.vue"),
+      meta: { requiresAuth: true }
+    },
+    {
       path: "/test",
       name: "test",
       component: () => import("./views/Test.vue")
@@ -45,4 +52,35 @@ export default new Router({
       component: () => import("./components/common/NotFound/index.vue")
     }
   ]
-});
+})
+
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    let logined = false
+    try {
+      logined = await Auth.isLogined()
+      if (logined) {
+        // 如果判断是已登录情况,则继续
+        next()
+      } else {
+        // 假设这里的about页是未登录情况下跳转的地方
+        next({
+          path: "/about"
+        })
+      }
+    } catch (error) {
+      // 如果请求报错,一般是500的时候,应该跳转报错页面
+      next({
+        replace: true,
+        name: "notfound",
+        params: { "0": to.path }
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
