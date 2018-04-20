@@ -108,7 +108,7 @@
 	import util from '../../common/js/util'
     import NProgress from 'nprogress'
     import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../constants/API'
-    import { CONST_ADD_SUCCESS,CONST_DELETE_SUCCESS } from '../../constants/TEXT'
+    import { SUCCESS,FAIL,CONST_ADD_SUCCESS,CONST_DELETE_SUCCESS } from '../../constants/TEXT'
 
 	export default {
 		data() {
@@ -201,7 +201,7 @@
 						this.listLoading = false;
 						NProgress.done();
 						this.$notify({
-							title: '成功',
+							title: SUCCESS,
 							message: CONST_DELETE_SUCCESS,
 							type: 'success'
 						});
@@ -240,7 +240,7 @@
 								this.editLoading = false;
 								NProgress.done();
 								this.$notify({
-									title: '成功',
+									title: SUCCESS,
 									message: 'CONST_ADD_SUCCESS',
 									type: 'success'
 								});
@@ -265,7 +265,7 @@
 								this.addLoading = false;
 								NProgress.done();
 								this.$notify({
-									title: '成功',
+									title: SUCCESS,
 									message: 'CONST_ADD_SUCCESS',
 									type: 'success'
 								});
@@ -293,8 +293,8 @@
 						this.listLoading = false;
 						NProgress.done();
 						this.$notify({
-							title: '成功',
-							message: '删除成功',
+							title: SUCCESS,
+							message: CONST_DELETE_SUCCESS,
 							type: 'success'
 						});
 						this.getUsers();

@@ -80,3 +80,64 @@
       ]
     }
 ```
+
+# vue框架
+a simple template based on [vuejs2](http://vuejs.org/) and [element](http://element.eleme.io/#/).
+
+- bash
+# install dependencies
+  npm install
+
+# serve with hot reload at localhost:8080
+  npm run serve
+
+# build for production with minification
+  npm run build
+
+#demo 说明
+- 基于elementUI，使用es6语法实现用户的增，删，改，查。开发过程中按此语法规则（详见es6语法规则）开发。
+
+## 关于 数据接口 的说明
+- 实现基于mock生成测试数据 json 格式
+
+## 技术栈
+
+vue2 + elementUI + vue-router + webpack + ES6/7 + axios + sass + flex
+
+## 项目运行
+
+#### 注意：由于涉及大量的 ES6/7 等新属性，node 需要 6.0 以上版本
+
+```
+git clone http://git.kaomanfen.com/bpit/FETeam/FE-standard.git
+
+cd FE-standard
+
+npm install（或者taobao镜像---npm install -g cnpm --registry=https://registry.npm.taobao.org）
+
+npm run serve
+
+```
+# 项目布局
+```
+.
+├── pubulic                                       //公用文件
+├── src                                         // 源码目录
+│   ├── components                              // 组件
+│   │   ├── common                              // 公共组件
+│   │   │   ├── js                             // 公用方法库
+│   │   ├── footer
+│   │   │   └── footGuide.vue                   // 底部公共组件
+│   │   └── header
+│   │       └── head.vue                        // 头部公共组件
+│   ├── constants                                  // 基本常量配置
+│   │   ├── API.ts                              // api配置
+│   │   ├── TEXT.ts                            // 常量配置
+│   │   ├── URL.ts                           // 常用url
+│   ├── images                                  // 公共图片
+│   ├── views
+│   │   ├── demo
+│   │   │   ├── Form.vue                     // 表格页面
+│   │   │   └── Table.vue
+.。。。
+# 详细参考TAL- standard.docx
