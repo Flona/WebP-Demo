@@ -1,13 +1,13 @@
-import http from './http'
+import http from "./http"
 /**
  * Get请求
  * @param { String } url
  * @param { Object } params
  * @param { Boolean } mute 是否loading，默认false
  */
-export function sendGet(url:string, params:object, mute = false) {
+export function sendGet(url: string, params: object, mute: boolean = false) {
   return http.get(url, { params }).then(response => {
-    return response&&response.data
+    return response.data
   })
 }
 
@@ -16,9 +16,9 @@ export function sendGet(url:string, params:object, mute = false) {
  * @param { String } url
  * @param { Object } data
  */
-export function sendPost(url:string, data:object) {
+export function sendPost(url: string, data: object) {
   return http.post(url, data).then(response => {
-    return response&&response.data
+    return response.data
   })
 }
 
@@ -27,9 +27,9 @@ export function sendPost(url:string, data:object) {
  * @param { String } url
  * @param { Object } data
  */
-export function sendPut(url:string, data:object) {
+export function sendPut(url: string, data: object) {
   return http.put(url, data).then(response => {
-    return response&&response.data
+    return response.data
   })
 }
 
@@ -38,8 +38,8 @@ export function sendPut(url:string, data:object) {
  * @param { String } url
  * @param { Object } params
  */
-export function sendDelete(url:string, params:object) {
+export function sendDelete(url: string, params: object) {
   return http.delete(url, { params }).then(response => {
-    return response&&response.data
+    return response.data
   })
 }

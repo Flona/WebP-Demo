@@ -8,14 +8,18 @@ let deletUrl = 'https://jsonplaceholder.typicode.com/posts/'
 //这是域名
 let base = ''
 
-export const testGetApi = (params ,id)=> { return sendGet(`${getUrl}`, params); }
-
-export const testDeleteApi = (params ,id)=> { return sendDelete(`${deletUrl}${id}`, params); }
-
-export const testPutApi = (params ,id)=> { return sendPut(`${deletUrl}${id}`, params); }
-
-export const testPostApi = (params ,id)=> { return sendPost(`${deletUrl}`, params); }
-
+export const testGetApi = (params: object, id: string) => {
+    return sendGet(`${getUrl}`, params)
+}
+export const testDeleteApi = (params: object, id: string) => {
+    return sendDelete(`${deletUrl}${id}`, params)
+}
+export const testPutApi = (params: object, id: string) => {
+    return sendPut(`${deletUrl}${id}`, params)
+}
+export const testPostApi = (params: object, id: string) => {
+    return sendPost(`${deletUrl}`, params)
+}
 export const getUserList = params => { return sendGet(`${base}/user/list`, { params: params }); }
 
 export const getUserListPage = params => { return sendGet(`${base}/user/listpage`, { params: params }); }
