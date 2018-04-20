@@ -1,34 +1,3 @@
-<!--
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
-</template>
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
--->
 <template>
   <div id="app">
     <router-view>
@@ -38,12 +7,9 @@
 </template>
 
 <script>
-    export default {
-        name: 'app',
-        components: {
-        }
-    }
-
+  export default {
+    name: "app"
+  }
 </script>
 
 <style lang="scss">
@@ -51,9 +17,10 @@
     margin: 0px;
     padding: 0px;
     /*background: url(assets/bg1.jpg) center !important;
-    background-size: cover;*/
-    background: #1F2D3D;
-    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+        background-size: cover;*/
+    background: #1f2d3d;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+      Microsoft YaHei, SimSun, sans-serif;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
   }
@@ -65,12 +32,12 @@
     width: 100%;
   }
 
-  .el-submenu [class^=fa] {
+  .el-submenu [class^="fa"] {
     vertical-align: baseline;
     margin-right: 10px;
   }
 
-  .el-menu-item [class^=fa] {
+  .el-menu-item [class^="fa"] {
     vertical-align: baseline;
     margin-right: 10px;
   }
