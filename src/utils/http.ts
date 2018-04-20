@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import {status404, status401} from "../constants/TEXT"
 import qs from "qs";
 // 引入element-ui右侧弹框提示样式，可以根据项目需求改不同形式弹框
 import { Notification } from "element-ui";
@@ -47,16 +48,16 @@ http.interceptors.request.use(
   }
 );
 
-function isStatusSuccess(config: AxiosResponse<any>) {
-  if (config.data.status === "success") {
-    // 成功 请求接口会拿到需要的数据
+function isSuccess(config: AxiosResponse<any>) {
+  if (config.data.success) {
+    // success=true成功 请求接口会拿到需要的数据
     return config;
   } else {
     // 不成功但是有可能根据config.data.errcode的不同有不同的处理逻辑
-    return isSuccess(config);
+    return isReturn(config);
   }
 }
-function isSuccess(config: AxiosResponse<any>) {
+function isReturn(config: AxiosResponse<any>) {
   if (config.data.errcode == "1") {
     // errcode == '1'时单纯的我只是把后端给的errmsg弹弹了出来
     Notification({
@@ -74,12 +75,11 @@ function isSuccess(config: AxiosResponse<any>) {
 // axios respone拦截器
 http.interceptors.response.use(
   config => {
-    console.log(config.status);
     if (config.status === 404) {
       Notification({
         type: "error",
         title: "哎呀",
-        message: "404",
+        message: status404,
         duration: 0
       });
       return { ...config, data: null };
@@ -87,12 +87,12 @@ http.interceptors.response.use(
       Notification({
         type: "error",
         title: "哎呀",
-        message: "token过期，请重新登录",
+        message: status401,
         duration: 0
       });
       return { ...config, data: null };
     } else {
-      return isStatusSuccess(config);
+      return isSuccess(config);
     }
   },
   (error: any) => {

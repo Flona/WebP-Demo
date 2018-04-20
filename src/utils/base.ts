@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import axios from "axios"
 import http from "./http"
-=======
-import http from "./http";
->>>>>>> 84797fc1fc26e6839bb88364e9995e807e68b882
 /**
  * Get请求
  * @param { String } url
@@ -45,7 +41,6 @@ export function sendPut(url: string, data: object) {
  */
 export function sendDelete(url: string, params: object) {
   return http.delete(url, { params }).then(response => {
-<<<<<<< HEAD
     return response.data
   })
 }
@@ -59,8 +54,3 @@ export function sendAll(iterable: any[], callback:()=>Promise<any>) {
   return axios.all(iterable).then(
     axios.spread(callback))
 }
-=======
-    return response.data;
-  });
-}
->>>>>>> 84797fc1fc26e6839bb88364e9995e807e68b882
