@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --open ",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "version":"conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -28,6 +29,7 @@
     "@vue/cli-service": "^3.0.0-beta.6",
     "@vue/eslint-config-prettier": "^3.0.0-beta.6",
     "@vue/eslint-config-typescript": "^3.0.0-beta.6",
+    "cz-conventional-changelog": "^2.1.0",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13"
@@ -36,5 +38,10 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

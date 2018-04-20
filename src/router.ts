@@ -91,3 +91,35 @@ export default new Router({
   ]
 });
 */
+
+
+/*router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    let logined = false
+    try {
+      logined = await Auth.isLogined()
+      if (logined) {
+        // 如果判断是已登录情况,则继续
+        next()
+      } else {
+        // 假设这里的about页是未登录情况下跳转的地方
+        next({
+          path: "/about"
+        })
+      }
+    } catch (error) {
+      // 如果请求报错,一般是500的时候,应该跳转报错页面
+      next({
+        replace: true,
+        name: "notfound",
+        params: { "0": to.path }
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router*/
