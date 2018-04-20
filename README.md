@@ -80,3 +80,62 @@
       ]
     }
 ```
+
+- 用户登录验证场景. 常规场景:
+  - 当用户进入某一个页面,需判断此用户登录信息是否过期.过期则跳到登录页,未过期则进入页面正常走流程
+
+代码示例讲解如下:
+
+```js
+// 添加路由拦截器
+router.beforeEach(async (to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    let logined = false
+    try {
+      // auth模块可以定制化验证的方法
+      logined = await Auth.isLogined()
+      if (logined) {
+        // 如果判断是已登录情况,则继续
+        next()
+      } else {
+        // 假设这里的about页是未登录情况下跳转的地方
+        next({
+          path: "/about"
+        })
+      }
+    } catch (error) {
+      // 如果请求报错,一般是500的时候,应该跳转报错页面
+      next({
+        replace: true,
+        name: "notfound",
+        params: { "0": to.path }
+      })
+    }
+  } else {
+    next()
+  }
+})
+```
+对需要验证的路由地址需要添加meta参数
+```js
+    {
+      path: "/auth",
+      name: "auth",
+      component: () => import("./views/Test.vue"),
+      meta: { requiresAuth: true }  //这个说明 /auth这个路由需要验证
+    },
+```
+
+Auth的登录方法
+
+```js  
+// 里面怎么处理按不同项目自定义,但规定要返回promise
+ static isLogined(): Promise<any> {
+    // 你可以这里做请求做用户验证
+
+    return Promise.reject(true)
+    // return Promise.resolve(false)
+  }
+```
