@@ -42,3 +42,41 @@
     - 作为对自己的提醒, 比如 // TODO: 这里要做验证  // FIXME: 这有个bug,明天改
 
 - 对于第三方lib的引入,团队内多沟通, 会有更好的方法,例如lodash引入的时候可以针对某一函数引入,以减小打包体积
+
+- layout 使用以及示例:
+脚手架默认带有两种layout: 1. 左侧导航(sidebar) 2. 上面导航(navbar)
+
+```js
+{
+      path: "/",
+      // 这里是使用1类型的布局组件
+      component: () => import("./layout/SidebarLayout/index.vue"),
+      children: [
+        {
+          path: "",
+          components: {
+              // default为内容区域的组件
+            default: () => import("./views/Home.vue"),
+            // sidebar为左侧导航组件
+            sidebar: () => import("./components/common/Sidebar/index.vue")
+          }
+        }
+      ]
+    },
+    {
+      path: "/about",
+            // 这里是使用2类型的布局组件
+      component: () => import("./layout/NavbarLayout/index.vue"),
+      children: [
+        {
+          path: "",
+          components: {
+                       // default为内容区域的组件
+            default: () => import("./views/About.vue"),
+                       // nav为上面导航的组件
+            nav: () => import("./components/common/Navbar/index.vue")
+          }
+        }
+      ]
+    }
+```
