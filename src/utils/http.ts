@@ -25,7 +25,7 @@ const postHeaders = "application/x-www-form-urlencoded";
 const http = axios.create(axiosCreate);
 
 /**
- * axios respone拦截器
+ * axios request拦截器
  * 要求后端不管成功与否返回数据结构
  * {
  *  data:{},数据
