@@ -29,9 +29,9 @@ const http = axios.create(axiosCreate);
  * 要求后端不管成功与否返回数据结构
  * {
  *  data:{},数据
- *  status:'success'/'fail', 成功与否的大判断:success成功，fail失败进一步根据errcode判断
+ *  success:true/false, 成功与否的大判断:success成功，fail失败进一步根据errcode判断
  *  errcode:1/2/3..., 用来拓展业务需求特殊处理的情:errcode==1默认提示errmsg。其余的结合业务需求前后端协商定义
- *  errmsg:'若status=='success' && errcode==1我就弹出errmsg内容'
+ *  errmsg:'success==true && errcode==1我就弹出errmsg内容'
  * }
  */
 http.interceptors.request.use(
