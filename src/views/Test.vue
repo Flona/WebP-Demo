@@ -1,9 +1,9 @@
 <template>
-  <div class="test">
+  <div class="test-warpper">
   </div>
 </template>
 <script>
-  import {testGetApi, testDeleteApi, testPutApi, testPostApi, testAllApi} from '../constants/API'
+  import {getTestApi, deleteTestApi, putTestApi, postTestApi, allTestApi} from '@/constants/API'
   export default {
     data () {
       return {
@@ -18,37 +18,43 @@
     },
     methods: {
       handleGetTest() {
-        testGetApi({})
+        getTestApi()
       },
       handleDeleteTest() {
-        testDeleteApi({},'1').then(res => {
+        deleteTestApi({},'1').then(res => {
           if (res) {
             console.log('handleDeleteTest',res)
           }
         })
       },
       handlePutTest() {
-        testPutApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        putTestApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePutTest',res)
           }
         })
       },
       handlePostTest() {
-        testPostApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        postTestApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePostTest',res)
           }
         })
       },
       returnPut() {
-        return testPutApi({title: 'foo',body: 'bar',userId: 1},'1')
+        return putTestApi({title: 'foo',body: 'bar',userId: 1},'1')
       },
       returnDelete() {
-        return testDeleteApi({},'1')
+        return deleteTestApi({},'1')
+      },
+      returnPost() {
+        return postTestApi({title: 'foo',body: 'bar',userId: 1},'1')
+      },
+      returnGet() {
+        return getTestApi({})
       },
       handleAllTest() {
-        testAllApi([testGetApi({}),this.returnPut(),this.returnDelete(),testPostApi({title: 'foo',body: 'bar',userId: 1},'1')],function (Get,Put,Delete,Post){
+        allTestApi([this.returnGet(),this.returnPut(),this.returnDelete(),this.returnPost()],function (Get,Put,Delete,Post){
           if (Get && Put && Post && Delete) {
             console.log('Get',Get)
             console.log('Put',Put)

@@ -4,9 +4,8 @@ import http from "./http"
  * Get请求
  * @param { String } url
  * @param { Object } params
- * @param { Boolean } mute 是否loading，默认false
  */
-export function sendGet(url: string, params: object, mute: boolean = false) {
+export function sendGet(url: string, params: object = {}) {
   return http.get(url, { params }).then(response => {
     return response.data;
   });

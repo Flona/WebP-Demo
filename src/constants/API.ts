@@ -3,46 +3,25 @@
  * https://jsonplaceholder.typicode.com/posts/1
  * */
 import axios from "axios"
-import { sendGet, sendPost, sendDelete, sendPut, sendAll } from "../utils/base"
-let getUrl = "http://www.zhiyinlou.com/theme/index.css"
-let deletUrl = "https://jsonplaceholder.typicode.com/posts/";
-let base = ""
-export const testGetApi = (params: object, id: string) => {
-  return sendGet(`${getUrl}`, params)
+import {sendGet, sendPost, sendDelete, sendPut, sendAll} from "@/utils/base"
+let TEST_GET_URL = "http://www.zhiyinlou.com/theme/index.css"
+let TEST_DELETE_URL = "https://jsonplaceholder.typicode.com/posts/";
+let DEMO_TABLE_DATA_URL = "/table.json"
+export const getTestApi = () => {
+  return sendGet(`${TEST_GET_URL}`)
 }
-export const testDeleteApi = (params: object, id: string) => {
-  return sendDelete(`${deletUrl}${id}`, params)
+export const deleteTestApi = (params: object, id: string) => {
+  return sendDelete(`${TEST_DELETE_URL}${id}`, params)
 }
-export const testPutApi = (params: object, id: string) => {
-  return sendPut(`${deletUrl}${id}`, params)
+export const putTestApi = (params: object, id: string) => {
+  return sendPut(`${TEST_DELETE_URL}${id}`, params)
 }
-export const testPostApi = (params: object, id: string) => {
-  return sendPost(`${deletUrl}`, params)
+export const postTestApi = (params: object, id: string) => {
+  return sendPost(`${TEST_DELETE_URL}`, params)
 }
-export const testAllApi = (iterable: any[], callback:()=>Promise<any>) => {
+export const allTestApi = (iterable: any[], callback:()=>Promise<any>) => {
   return sendAll(iterable, callback)
 }
-
-/**
- * 结合mock.js使用，便于拦截，参考，实际使用按下方规则
- * */
-
-export const getUserListPage = (params: object) => {
-  return sendGet(`${base}/user/listpage`, params)
-}
-
-export const removeUser = (params: object) => {
-  return sendGet(`${base}/user/remove`, params)
-}
-
-export const batchRemoveUser = (params: object) => {
-  return sendGet(`${base}/user/batchremove`, params)
-}
-
-export const editUser = (params: object) => {
-  return sendGet(`${base}/user/edit`, params)
-}
-
-export const addUser = (params: object) => {
-  return sendGet(`${base}/user/add`, params)
+export const getDemoTableDataApi = () => {
+  return sendGet(`${DEMO_TABLE_DATA_URL}`)
 }

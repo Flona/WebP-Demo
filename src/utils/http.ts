@@ -1,7 +1,7 @@
 // 引入axios用来封装http请求
 import axios, { AxiosResponse } from "axios"
 // 提示信息常量引入，方便统一更改
-import {HTTP_STATUS_MSG_404, HTTP_STATUS_MSG_401, HTTP_STATUS_MSG_5XX, HTTP_STATUS_TITLE_401, HTTP_STATUS_TITLE_404, HTTP_STATUS_TITLE_5XX} from "../constants/TEXT"
+import {HTTP_STATUS_MSG_404, HTTP_STATUS_MSG_401, HTTP_STATUS_MSG_5XX, HTTP_STATUS_TITLE_ERROR, HTTP_STATUS_TITLE_5XX} from "../constants/TEXT"
 // Content-Type:application/x-www-form-urlencoded时 对json数据字符串处理，JSON.stringify()不是很理想
 import qs from "qs"
 // 引入element-ui右侧弹框提示样式，可以根据项目需求改不同形式弹框             
@@ -63,7 +63,7 @@ http.interceptors.response.use(
     if (config.status === 404) {
       Notification({
         type: "error",
-        title: HTTP_STATUS_TITLE_404,
+        title: HTTP_STATUS_TITLE_ERROR,
         message: HTTP_STATUS_MSG_404,
         duration: 3000   // 弹框自动消失时间
       });
@@ -71,7 +71,7 @@ http.interceptors.response.use(
     } else if (config.status === 401) {
       Notification({
         type: "error",
-        title: HTTP_STATUS_TITLE_401,
+        title: HTTP_STATUS_TITLE_ERROR,
         message: HTTP_STATUS_MSG_401,
         duration: 3000   // 弹框自动消失时间
       });
@@ -93,7 +93,7 @@ http.interceptors.response.use(
  
 function isSuccess(config: AxiosResponse<any>) {
   if (config.data.success) {
-    return config;                  // success === true成功 请求接口会拿到需要的数据
+    return config;             // success === true成功 请求接口会拿到需要的数据
   } else {
     return isReturn(config);        // 不成功，但是有可能根据config.data.errcode的不同有不同的处理逻辑，函数抽离出去，根据项目更改isReturn函数中内容即可
   }

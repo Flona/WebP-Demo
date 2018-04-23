@@ -20,8 +20,7 @@ export const ENUM_COLOR: object = {
 export const HTTP_STATUS_MSG_404 = "页面走丢了"
 export const HTTP_STATUS_MSG_401 = "token过期，请重新登录"
 export const HTTP_STATUS_MSG_5XX = "网络错误，请稍后重试"
-export const HTTP_STATUS_TITLE_401 = "请求错误"
-export const HTTP_STATUS_TITLE_404 = "请求错误"
+export const HTTP_STATUS_TITLE_ERROR = "请求错误"
 export const HTTP_STATUS_TITLE_5XX = "服务器错误"
 
 export const NAV_HOME_PAGE = "Home页面"
@@ -40,6 +39,12 @@ export const LABEL_TAL = "TAL"
 export const LABEL_MY_MSG = "我的消息"
 export const LABEL_SETTINGS = "设置"
 export const LABEL_LOGOUT = "退出登录"
+// demo-table
+export const LABEL_NAME = "姓名"
+export const LABEL_MOBILE = "手机"
+export const LABEL_JOIN_DATE = "入职日期"
+export const LABEL_ID_NUMBER = "身份证号"
+export const LABEL_JOIN_POSITION_NAME = "入职职位"
 
 // demo-form
 export const LABEL_ACTIVITY_NAME = "活动名称"
