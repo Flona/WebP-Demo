@@ -40,6 +40,12 @@ export const LABEL_TAL = "TAL"
 export const LABEL_MY_MSG = "我的消息"
 export const LABEL_SETTINGS = "设置"
 export const LABEL_LOGOUT = "退出登录"
+// demo-table
+export const LABEL_NAME = "姓名"
+export const LABEL_MOBILE = "手机"
+export const LABEL_JOIN_DATE = "入职日期"
+export const LABEL_ID_NUMBER = "身份证号"
+export const LABEL_JOIN_POSITION_NAME = "入职职位"
 
 // demo-form
 export const LABEL_ACTIVITY_NAME = "活动名称"

@@ -3,7 +3,7 @@
   </div>
 </template>
 <script>
-  import {API_TEST_GET, API_TEST_DELETE, API_TEST_PUT, API_TEST_POST, API_TEST_ALL} from '../constants/API'
+  import {API_TEST_GET, API_TEST_DELETE, API_TEST_PUT, API_TEST_POST, API_TEST_ALL} from '@/constants/API'
   export default {
     data () {
       return {
