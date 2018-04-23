@@ -1,54 +1,60 @@
 <template>
-  <div class="test">
+  <div class="test-warpper">
   </div>
 </template>
 <script>
-  import {API_TEST_GET, API_TEST_DELETE, API_TEST_PUT, API_TEST_POST, API_TEST_ALL} from '@/constants/API'
+  import {getTestApi, deleteTestApi, putTestApi, postTestApi, allTestApi} from '@/constants/API'
   export default {
     data () {
       return {
       }
     },
     created () {
-      this.handleGetTest()
+      // this.handleGetTest()
       // this.handleDeleteTest()
       // this.handlePutTest()
       // this.handlePostTest()
-      // this.handleAllTest()
+      this.handleAllTest()
     },
     methods: {
       handleGetTest() {
-        API_TEST_GET()
+        getTestApi()
       },
       handleDeleteTest() {
-        API_TEST_DELETE({},'1').then(res => {
+        deleteTestApi({},'1').then(res => {
           if (res) {
             console.log('handleDeleteTest',res)
           }
         })
       },
       handlePutTest() {
-        API_TEST_PUT({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        putTestApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePutTest',res)
           }
         })
       },
       handlePostTest() {
-        API_TEST_POST({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        postTestApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePostTest',res)
           }
         })
       },
       returnPut() {
-        return API_TEST_PUT({title: 'foo',body: 'bar',userId: 1},'1')
+        return putTestApi({title: 'foo',body: 'bar',userId: 1},'1')
       },
       returnDelete() {
-        return API_TEST_DELETE({},'1')
+        return deleteTestApi({},'1')
+      },
+      returnPost() {
+        return postTestApi({title: 'foo',body: 'bar',userId: 1},'1')
+      },
+      returnGet() {
+        return getTestApi({})
       },
       handleAllTest() {
-        API_TEST_ALL([API_TEST_GET({}),this.returnPut(),this.returnDelete(),API_TEST_POST({title: 'foo',body: 'bar',userId: 1},'1')],function (Get,Put,Delete,Post){
+        allTestApi([this.returnGet(),this.returnPut(),this.returnDelete(),this.returnPost()],function (Get,Put,Delete,Post){
           if (Get && Put && Post && Delete) {
             console.log('Get',Get)
             console.log('Put',Put)
