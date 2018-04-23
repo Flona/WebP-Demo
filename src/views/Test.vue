@@ -3,52 +3,52 @@
   </div>
 </template>
 <script>
-  import {testGetApi, testDeleteApi, testPutApi, testPostApi, testAllApi} from '../constants/API'
+  import {API_TEST_GET, API_TEST_DELETE, API_TEST_PUT, API_TEST_POST, API_TEST_ALL} from '../constants/API'
   export default {
     data () {
       return {
       }
     },
     created () {
-      // this.handleGetTest()
+      this.handleGetTest()
       // this.handleDeleteTest()
       // this.handlePutTest()
       // this.handlePostTest()
-      this.handleAllTest()
+      // this.handleAllTest()
     },
     methods: {
       handleGetTest() {
-        testGetApi({})
+        API_TEST_GET()
       },
       handleDeleteTest() {
-        testDeleteApi({},'1').then(res => {
+        API_TEST_DELETE({},'1').then(res => {
           if (res) {
             console.log('handleDeleteTest',res)
           }
         })
       },
       handlePutTest() {
-        testPutApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        API_TEST_PUT({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePutTest',res)
           }
         })
       },
       handlePostTest() {
-        testPostApi({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
+        API_TEST_POST({title: 'foo',body: 'bar',userId: 1},'1').then(res => {
           if (res) {
             console.log('handlePostTest',res)
           }
         })
       },
       returnPut() {
-        return testPutApi({title: 'foo',body: 'bar',userId: 1},'1')
+        return API_TEST_PUT({title: 'foo',body: 'bar',userId: 1},'1')
       },
       returnDelete() {
-        return testDeleteApi({},'1')
+        return API_TEST_DELETE({},'1')
       },
       handleAllTest() {
-        testAllApi([testGetApi({}),this.returnPut(),this.returnDelete(),testPostApi({title: 'foo',body: 'bar',userId: 1},'1')],function (Get,Put,Delete,Post){
+        API_TEST_ALL([API_TEST_GET({}),this.returnPut(),this.returnDelete(),API_TEST_POST({title: 'foo',body: 'bar',userId: 1},'1')],function (Get,Put,Delete,Post){
           if (Get && Put && Post && Delete) {
             console.log('Get',Get)
             console.log('Put',Put)

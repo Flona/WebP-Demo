@@ -93,7 +93,7 @@ http.interceptors.response.use(
  
 function isSuccess(config: AxiosResponse<any>) {
   if (config.data.success) {
-    return config;                  // success === true成功 请求接口会拿到需要的数据
+    return config;             // success === true成功 请求接口会拿到需要的数据
   } else {
     return isReturn(config);        // 不成功，但是有可能根据config.data.errcode的不同有不同的处理逻辑，函数抽离出去，根据项目更改isReturn函数中内容即可
   }
