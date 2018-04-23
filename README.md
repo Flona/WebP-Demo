@@ -1,12 +1,9 @@
-此脚手架基于 vue-cli 3.0.0-beta.6
-
 
 ### 目录结构
 
 - public 静态资源 用于存放不用已模块化引入到项目中的静态 font 或者某些图片,未来会考虑放到CDN上
 
-- 环境配置 .env.development 是开发环境中自动引入的变量 .env.production为正式环境的. 
->注意.所以变量必须以VUE_APP_开头,使用的时候-> process.evn.VUE_APP_XX
+-  [环境配置](http://conf.kaomanfen.com/pages/viewpage.action?pageId=1179881)
 
 - ElementUI 样式变量修改. src/assets/css/common.scss中改变对应的颜色变量即可
 
@@ -14,27 +11,23 @@
 >可以通过@assets来引入此夹子下的资源
 
 
-- 常量 constants - 一个目的,项目中尽量不要存在hardcode,集中管理
-    - API 此文件存放系统中所有需要请求的api地址
-    - TEXT 存放所有前端需要用的枚举,文字常量等
-    - URL 存放路由地址
+- 常量 constants - [说明](http://conf.kaomanfen.com/pages/viewpage.action?pageId=1179883)
 
 - components - 命名规则 如 HelloWorld
     - common 通用可复用组件
     - modules 根据不同模块下面增加子目录存放业务组件
 
-- utils 存放辅助性方法
+- utils 存放辅助性方法 例如:[http](http://conf.kaomanfen.com/pages/viewpage.action?pageId=1179861)
 
 - views 存放具体页面,下面需根据模块建立子目录 命名规则 如 HelloWorld
 
-- 懒加载路由 router.ts中 一定要使用import的方式懒加载对应页面
 
 - 默认loading - 应对当任何渲染所需的js还未加载完之前的白屏情况
 >public/index.html 中loaders-container部分为例子,可根据项目自行修改
 
 - font/img 使用基本原则
-    - img不要太大尺寸或者大小,必须压缩,tinypng之类.如果设计师可以给出svg最好
-    - font 请使用fontmin抽取出固定的字符,如果字符是固定的情况下
+    - img不要太大尺寸或者大小,必须压缩,tinypng之类.如果设计师可以给出svg最好 [tinypng](https://tinypng.com/)
+    - font 请使用fontmin抽取出固定的字符,如果字符是固定的情况下 [fontmin]((http://conf.kaomanfen.com/pages/viewpage.action?pageId=1179833))
 
 - ESLint + prettier 此脚手架基于cli的ESLint + prettier配置,为了大家格式和基本代码风格统一,请确保每一个页面没有warning/error出现. 确保lint通过
 
@@ -45,41 +38,10 @@
 
 - layout 使用以及示例:
 脚手架默认带有两种layout: 1. 左侧导航(sidebar) 2. 上面导航(navbar)
+- 懒加载路由 router.ts中 一定要使用import的方式懒加载对应页面
+[路由分割+布局配置说明](http://conf.kaomanfen.com/pages/viewpage.action?pageId=1179879)
 
-```js
-{
-      path: "/",
-      // 这里是使用1类型的布局组件
-      component: () => import("./layout/SidebarLayout/index.vue"),
-      children: [
-        {
-          path: "",
-          components: {
-              // default为内容区域的组件
-            default: () => import("./views/Home.vue"),
-            // sidebar为左侧导航组件
-            sidebar: () => import("./components/common/Sidebar/index.vue")
-          }
-        }
-      ]
-    },
-    {
-      path: "/about",
-            // 这里是使用2类型的布局组件
-      component: () => import("./layout/NavbarLayout/index.vue"),
-      children: [
-        {
-          path: "",
-          components: {
-                       // default为内容区域的组件
-            default: () => import("./views/About.vue"),
-                       // nav为上面导航的组件
-            nav: () => import("./components/common/Navbar/index.vue")
-          }
-        }
-      ]
-    }
-```
+>此脚手架基于 vue-cli 3.0.0-beta.6
 
 # vue框架
 a simple template based on [vuejs2](http://vuejs.org/) and [element](http://element.eleme.io/#/).
@@ -94,50 +56,10 @@ a simple template based on [vuejs2](http://vuejs.org/) and [element](http://elem
 # build for production with minification
   npm run build
 
-#demo 说明
-- 基于elementUI，使用es6语法实现用户的增，删，改，查。开发过程中按此语法规则（详见es6语法规则）开发。
-
-## 关于 数据接口 的说明
-- 实现基于mock生成测试数据 json 格式
-
 ## 技术栈
 
-vue2 + elementUI + vue-router + webpack + ES6/7 + axios + sass + flex
+vue2 + elementUI + vue-router + webpack + ES6/7 + axios + scss
 
 ## 项目运行
 
 #### 注意：由于涉及大量的 ES6/7 等新属性，node 需要 6.0 以上版本
-
-```
-git clone http://git.kaomanfen.com/bpit/FETeam/FE-standard.git
-
-cd FE-standard
-
-npm install（或者taobao镜像---npm install -g cnpm --registry=https://registry.npm.taobao.org）
-
-npm run serve
-
-```
-# 项目布局
-```
-.
-├── pubulic                                       //公用文件
-├── src                                         // 源码目录
-│   ├── components                              // 组件
-│   │   ├── common                              // 公共组件
-│   │   │   ├── js                             // 公用方法库
-│   │   ├── footer
-│   │   │   └── footGuide.vue                   // 底部公共组件
-│   │   └── header
-│   │       └── head.vue                        // 头部公共组件
-│   ├── constants                                  // 基本常量配置
-│   │   ├── API.ts                              // api配置
-│   │   ├── TEXT.ts                            // 常量配置
-│   │   ├── URL.ts                           // 常用url
-│   ├── images                                  // 公共图片
-│   ├── views
-│   │   ├── demo
-│   │   │   ├── Form.vue                     // 表格页面
-│   │   │   └── Table.vue
-.。。。
-# 详细参考TAL- standard.docx
