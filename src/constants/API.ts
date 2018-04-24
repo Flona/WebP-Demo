@@ -2,8 +2,8 @@
  * api 都集中在这里
  * https://jsonplaceholder.typicode.com/posts/1
  * */
-import axios from "axios"
-import {sendGet, sendPost, sendDelete, sendPut, sendAll} from "@/utils/base"
+import { sendAll, sendDelete, sendGet, sendPost, sendPut } from '@/utils/base'
+
 let TEST_GET_URL = "http://www.zhiyinlou.com/theme/index.css"
 let TEST_DELETE_URL = "https://jsonplaceholder.typicode.com/posts/";
 let DEMO_TABLE_DATA_URL = "/table.json"
