@@ -53,8 +53,11 @@
 	  methods: {
 	    handleGetTable() {
 	      getDemoTableDataApi().then(res => {
-	        if (res) {
-	          this.tableData = res.data
+					if (res) { // res即为成功数据，若需要业务详细处理的情况，则判断errcode
+						// if (res.errcode === 'XXX') {
+							// 根据errcode约定，详细处理业务
+						// }
+	          this.tableData = res
 	        }
 	      })
 	    }
