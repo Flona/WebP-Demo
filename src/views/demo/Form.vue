@@ -7,23 +7,23 @@
 </template>
 
 <script>
-	import { LABEL_ACTIVITY_NAME } from "@/constants/TEXT"
+import { LABEL_ACTIVITY_NAME } from "@/constants/TEXT";
 
-	export default {
-	  data() {
-	    return {
-	      constants: {
-	        LABEL_ACTIVITY_NAME
-	      },
-	      form: {
-	        name: ""
-	      }
-	    }
-	  },
-	  methods: {
-	    onSubmit() {
-	      console.log("submit!")
-	    }
-	  }
-	}
+export default {
+  data() {
+    return {
+      constants: {
+        LABEL_ACTIVITY_NAME
+      },
+      form: {
+        name: ""
+      }
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("submit!");
+    }
+  }
+};
 </script>

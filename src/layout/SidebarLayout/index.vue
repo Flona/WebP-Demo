@@ -44,129 +44,129 @@
 </template>
 
 <script>
-  import {
-    LABEL_MY_MSG,
-    LABEL_TAL,
-    LABEL_SETTINGS,
-    LABEL_LOGOUT
-  } from "@/constants/TEXT"
-  import { PATH_LOGIN } from "@/constants/URL"
-  export default {
-    data() {
-      return {
-        constants: {
-          LABEL_MY_MSG,
-          LABEL_TAL,
-          LABEL_SETTINGS,
-          LABEL_LOGOUT
-        },
-        sysUserName: "John",
-        sysUserAvatar:
-          "https://avatars0.githubusercontent.com/u/35988190?s=400&u=5f4b4c8203e44fd9cf9230cb9ef7446de8ea29a1&v=4",
-        form: {
-          name: "",
-          region: "",
-          date1: "",
-          date2: "",
-          delivery: false,
-          type: [],
-          resource: "",
-          desc: ""
-        }
+import {
+  LABEL_MY_MSG,
+  LABEL_TAL,
+  LABEL_SETTINGS,
+  LABEL_LOGOUT
+} from "@/constants/TEXT";
+import { PATH_LOGIN } from "@/constants/URL";
+export default {
+  data() {
+    return {
+      constants: {
+        LABEL_MY_MSG,
+        LABEL_TAL,
+        LABEL_SETTINGS,
+        LABEL_LOGOUT
+      },
+      sysUserName: "John",
+      sysUserAvatar:
+        "https://avatars0.githubusercontent.com/u/35988190?s=400&u=5f4b4c8203e44fd9cf9230cb9ef7446de8ea29a1&v=4",
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: ""
       }
-    },
-    methods: {
-      logout: function() {
-        this.$confirm("确认退出吗?", "提示", {})
-          .then(() => {
-            sessionStorage.removeItem("user")
-            this.$router.push(PATH_LOGIN)
-          })
-          .catch(() => {})
-      }
-    },
-    mounted() {
-      var user = sessionStorage.getItem("user")
-      if (user) {
-        user = JSON.parse(user)
-        this.sysUserName = user.name || ""
-        this.sysUserAvatar = user.avatar || ""
-      }
+    };
+  },
+  methods: {
+    logout: function() {
+      this.$confirm("确认退出吗?", "提示", {})
+        .then(() => {
+          sessionStorage.removeItem("user");
+          this.$router.push(PATH_LOGIN);
+        })
+        .catch(() => {});
+    }
+  },
+  mounted() {
+    var user = sessionStorage.getItem("user");
+    if (user) {
+      user = JSON.parse(user);
+      this.sysUserName = user.name || "";
+      this.sysUserAvatar = user.avatar || "";
     }
   }
+};
 </script>
 <style scoped lang="scss">
-  .container {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    width: 100%;
-    .header {
-      height: 60px;
-      line-height: 60px;
-      background: #1f2d3d;
-      color: #c0ccda;
-      .userinfo {
-        text-align: right;
-        padding-right: 35px;
-        .userinfo-inner {
-          color: #c0ccda;
-          cursor: pointer;
-          img {
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            margin: 10px 0px 10px 10px;
-            float: right;
-          }
-        }
-      }
-      .logo {
-        font-size: 22px;
+.container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  .header {
+    height: 60px;
+    line-height: 60px;
+    background: #1f2d3d;
+    color: #c0ccda;
+    .userinfo {
+      text-align: right;
+      padding-right: 35px;
+      .userinfo-inner {
+        color: #c0ccda;
+        cursor: pointer;
         img {
           width: 40px;
-          float: left;
-          margin: 10px 10px 10px 18px;
-        }
-        .txt {
-          color: #20a0ff;
+          height: 40px;
+          border-radius: 20px;
+          margin: 10px 0px 10px 10px;
+          float: right;
         }
       }
     }
-    .main {
-      background: #324057;
-      position: absolute;
-      top: 60px;
-      bottom: 0px;
-      overflow: hidden;
-      aside {
-        width: 230px;
+    .logo {
+      font-size: 22px;
+      img {
+        width: 40px;
+        float: left;
+        margin: 10px 10px 10px 18px;
       }
-      .content-container {
-        background: #f1f2f7;
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        bottom: 0px;
-        left: 230px;
-        overflow-y: scroll;
-        padding: 20px;
-        .breadcrumb-container {
-          margin-bottom: 15px;
-          .title {
-            width: 200px;
-            float: left;
-            color: #475669;
-          }
-          .breadcrumb-inner {
-            float: right;
-          }
-        }
-        .content-wrapper {
-          background-color: #fff;
-          box-sizing: border-box;
-        }
+      .txt {
+        color: #20a0ff;
       }
     }
   }
+  .main {
+    background: #324057;
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    overflow: hidden;
+    aside {
+      width: 230px;
+    }
+    .content-container {
+      background: #f1f2f7;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      left: 230px;
+      overflow-y: scroll;
+      padding: 20px;
+      .breadcrumb-container {
+        margin-bottom: 15px;
+        .title {
+          width: 200px;
+          float: left;
+          color: #475669;
+        }
+        .breadcrumb-inner {
+          float: right;
+        }
+      }
+      .content-wrapper {
+        background-color: #fff;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
 </style>

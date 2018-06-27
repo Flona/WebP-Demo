@@ -22,51 +22,53 @@
 	</section>
 </template>
 <script>
-	import { getDemoTableDataApi } from "@/constants/API"
-	import { PATH_HOME } from "@/constants/URL"
-	import {
-	  LABEL_NAME,
-	  LABEL_MOBILE,
-	  LABEL_JOIN_DATE,
-	  LABEL_ID_NUMBER,
-	  LABEL_JOIN_POSITION_NAME,
-	  NAV_HOME_PAGE
-	} from "@/constants/TEXT"
-	export default {
-	  data() {
-	    return {
-	      constants: {
-	        LABEL_NAME,
-	        LABEL_MOBILE,
-	        LABEL_JOIN_DATE,
-	        LABEL_ID_NUMBER,
-	        LABEL_JOIN_POSITION_NAME,
-	        PATH_HOME,
-	        NAV_HOME_PAGE
-	      },
-	      tableData: []
-	    }
-	  },
-	  created() {
-	    this.handleGetTable()
-	  },
-	  methods: {
-	    handleGetTable() {
-	      getDemoTableDataApi().then(res => {
-					if (res) { // res即为成功数据，若需要业务详细处理的情况，则判断errcode
-						// if (res.errcode === 'XXX') {
-							// 根据errcode约定，详细处理业务
-						// }
-	          this.tableData = res
-	        }
-	      })
-	    }
-	  },
-	  components: {
-	    "async-card": () => import("@/components/modules/demo/Card.vue")
-	  }
-	}
+import { getDemoTableDataApi } from "@/constants/API";
+import { PATH_HOME } from "@/constants/URL";
+import {
+  LABEL_NAME,
+  LABEL_MOBILE,
+  LABEL_JOIN_DATE,
+  LABEL_ID_NUMBER,
+  LABEL_JOIN_POSITION_NAME,
+  NAV_HOME_PAGE
+} from "@/constants/TEXT";
+import { AsyncComp } from "@/utils/asyncCom";
+
+export default {
+  data() {
+    return {
+      constants: {
+        LABEL_NAME,
+        LABEL_MOBILE,
+        LABEL_JOIN_DATE,
+        LABEL_ID_NUMBER,
+        LABEL_JOIN_POSITION_NAME,
+        PATH_HOME,
+        NAV_HOME_PAGE
+      },
+      tableData: []
+    };
+  },
+  created() {
+    this.handleGetTable();
+  },
+  methods: {
+    handleGetTable() {
+      getDemoTableDataApi().then(res => {
+        if (res) {
+          // res即为成功数据，若需要业务详细处理的情况，则判断errcode
+          // if (res.errcode === 'XXX') {
+          // 根据errcode约定，详细处理业务
+          // }
+          this.tableData = res;
+        }
+      });
+    }
+  },
+  components: {
+    "async-card": AsyncComp(import("@/components/modules/demo/Card.vue"))
+  }
+};
 </script>
 <style scoped>
-
 </style>

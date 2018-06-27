@@ -9,10 +9,10 @@ import {
   NAV_HOME_SUB_PAGE,
   NAV_TABLE_MODULE,
   NAV_TANLE_MODULE_SUB_PAGE
-} from "@/constants/TEXT"
-import Auth from "@/utils/auth"
-import Vue from "vue"
-import Router from "vue-router"
+} from "@/constants/TEXT";
+import Auth from "@/utils/auth";
+import Vue from "vue";
+import Router from "vue-router";
 import {
   PATH_HOME,
   PATH_TABLE,
@@ -21,13 +21,14 @@ import {
   PATH_TEST,
   PATH_AUTH,
   PATH_LOGIN
-} from "@/constants/URL"
+} from "@/constants/URL";
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: "history",
   routes: [
+    { path: "/", redirect: PATH_HOME },
     {
       path: PATH_HOME,
       props: { iconCls: "el-icon-location", label: NAV_HOME_PAGE },
@@ -108,7 +109,7 @@ const router = new Router({
       component: () => import("@/views/404.vue")
     }
   ]
-})
+});
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
@@ -116,26 +117,26 @@ router.beforeEach(async (to, from, next) => {
     // if not, redirect to login page.
 
     try {
-      const logined = await Auth.isLogined()
-      console.log(logined)
+      const logined = await Auth.isLogined();
+      console.log(logined);
       if (logined) {
         // 如果判断是已登录情况,则继续
-        next()
+        next();
       } else {
         // 假设这里的about页是未登录情况下跳转的地方
-        console.log("not authrized")
+        console.log("not authrized");
         next({
           path: PATH_LOGIN
-        })
+        });
       }
     } catch (error) {
-      console.log("get user auth 500")
+      console.log("get user auth 500");
       // 如果请求报错,一般是500的时候,应该停留在当前页面
-      next(false)
+      next(false);
     }
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router;

@@ -6,29 +6,28 @@
 </template>
 
 <script>
-  export default {
-    name: "app"
-  }
+export default {
+  name: "app"
+};
 </script>
 
 <style lang="scss">
-  body {
-    margin: 0px;
-    padding: 0px;
-    /*background: url(assets/bg1.jpg) center !important;
+body {
+  margin: 0px;
+  padding: 0px;
+  /*background: url(assets/bg1.jpg) center !important;
         background-size: cover;*/
-    background: #1f2d3d;
-    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
-      Microsoft YaHei, SimSun, sans-serif;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-  }
+  background: #1f2d3d;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, SimSun, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
 
-  #app {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    width: 100%;
-  }
-
+#app {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+}
 </style>

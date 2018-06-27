@@ -16,22 +16,21 @@
     </el-menu>
 </template>
 <script>
-    export default {
-      methods: {
-        handleopen() {
-          //console.log('handleopen');
-        },
-        handleclose() {
-          //console.log('handleclose');
-        },
-        handleselect: function(a, b) {}
-      },
-      mounted() {
-        console.log(this.$router)
-      }
-    }
+export default {
+  methods: {
+    handleopen() {
+      //console.log('handleopen');
+    },
+    handleclose() {
+      //console.log('handleclose');
+    },
+    handleselect: function(a, b) {}
+  },
+  mounted() {
+    console.log(this.$router);
+  }
+};
 </script>
 
 <style scoped lang="scss">
-
 </style>

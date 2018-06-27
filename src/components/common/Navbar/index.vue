@@ -23,30 +23,30 @@
 </template>
 
 <script>
-    import {
-      NAV_HOME_PAGE,
-      NAV_TABLE_MODULE,
-      NAV_TANLE_MODULE_SUB_PAGE,
-      NAV_TEST_PAGE,
-      NAV_ABOUT_MODULE_SUB_PAGE
-    } from "@/constants/TEXT"
-    export default {
-      data() {
-        return {
-          constants: {
-            NAV_HOME_PAGE,
-            NAV_TABLE_MODULE,
-            NAV_TANLE_MODULE_SUB_PAGE,
-            NAV_TEST_PAGE,
-            NAV_ABOUT_MODULE_SUB_PAGE
-          },
-          activeIndex: "1"
-        }
+import {
+  NAV_HOME_PAGE,
+  NAV_TABLE_MODULE,
+  NAV_TANLE_MODULE_SUB_PAGE,
+  NAV_TEST_PAGE,
+  NAV_ABOUT_MODULE_SUB_PAGE
+} from "@/constants/TEXT";
+export default {
+  data() {
+    return {
+      constants: {
+        NAV_HOME_PAGE,
+        NAV_TABLE_MODULE,
+        NAV_TANLE_MODULE_SUB_PAGE,
+        NAV_TEST_PAGE,
+        NAV_ABOUT_MODULE_SUB_PAGE
       },
-      methods: {
-        handleSelect(key, keyPath) {
-          console.log(key, keyPath)
-        }
-      }
+      activeIndex: "1"
+    };
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     }
+  }
+};
 </script>

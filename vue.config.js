@@ -1,9 +1,12 @@
 const path = require("path");
 const projectRoot = path.resolve(__dirname);
 module.exports = {
-  lintOnSave: false,
+  // lintOnSave: false,
+  devServer: {
+    proxy: "http://pingfen-api.100tal.com"
+  },
   chainWebpack: config => {
-    config.plugins.delete("prefetch");
+    // config.plugins.delete("prefetch")
     config.resolve.alias.set("@assets", path.join(projectRoot, "src/assets"));
     // config.externals({
     //   "element-ui": "Element"

@@ -1,11 +1,19 @@
 // 引入axios用来封装http请求
-import axios, { AxiosResponse } from "axios"
+import axios from "axios";
+// token失效|禁用跳转登录页
+import router from "../router";
 // 提示信息常量引入，方便统一更改
-import {HTTP_STATUS_MSG_404, HTTP_STATUS_MSG_401, HTTP_STATUS_MSG_5XX, HTTP_STATUS_TITLE_ERROR, HTTP_STATUS_TITLE_5XX} from "../constants/TEXT"
+import {
+  HTTP_STATUS_MSG_401,
+  HTTP_STATUS_MSG_5XX,
+  HTTP_STATUS_TITLE_ERROR,
+  HTTP_STATUS_TITLE_5XX
+} from "../constants/TEXT";
 // Content-Type:application/x-www-form-urlencoded时 对json数据字符串处理，JSON.stringify()不是很理想
-import qs from "qs"
-// 引入element-ui右侧弹框提示样式，可以根据项目需求改不同形式弹框             
-import { Notification } from "element-ui"
+import qs from "qs";
+// 引入element-ui右侧弹框提示样式，可以根据项目需求改不同形式弹框
+import { Notification } from "element-ui";
+import { PATH_LOGIN } from "@/constants/URL";
 
 // 创建axios实例常量配置
 const axiosCreate = {
@@ -17,7 +25,7 @@ const axiosCreate = {
   withCredentials: true,
   validateStatus: function(status: number) {
     // 若状态码大于等于500时则Reject 用来统一处理5XX报错走catch方法
-    return status < 500;
+    return status < 400;
   }
 };
 
@@ -31,6 +39,7 @@ const postHeaders = "application/x-www-form-urlencoded";
 
 // 创建axios实例
 const http = axios.create(axiosCreate);
+// let loadingInstance: any
 
 /**
  * axios request拦截器
@@ -44,6 +53,10 @@ const http = axios.create(axiosCreate);
  */
 http.interceptors.request.use(
   config => {
+    // loadingInstance = Loading.service({ fullscreen: true });
+    config.headers["Authorization"] = localStorage.getItem("talToken")
+      ? "Bearer " + localStorage.getItem("talToken")
+      : "Bearer";
     if (config.method === "post" || config.method === "put") {
       config.data = qs.stringify(config.data);
       // 对post和put进行数据字符串化处理，若Content-Type:application/json则不需要
@@ -52,10 +65,11 @@ http.interceptors.request.use(
     return config;
   },
   error => {
+    // loadingInstance.close();
     Promise.reject(error);
   }
 );
- 
+
 /**
  * axios respone拦截器
  * 首先针对特殊状态码特殊处理，提示内容统一在常量ts中更改
@@ -63,48 +77,36 @@ http.interceptors.request.use(
  */
 http.interceptors.response.use(
   config => {
-    if (config.status === 404) {
-      Notification({
-        type: "error",
-        title: HTTP_STATUS_TITLE_ERROR,
-        message: HTTP_STATUS_MSG_404,
-        // 弹框自动消失时间
-        duration: 3000
-      });
-      return { ...config, data: null };
-    } else if (config.status === 401) {
-      Notification({
-        type: "error",
-        title: HTTP_STATUS_TITLE_ERROR,
-        message: HTTP_STATUS_MSG_401,
-        // 弹框自动消失时间
-        duration: 3000
-      });
-      return { ...config, data: null };
-    }  else if (config.status === 444) { 
-      // 后端约定，444时只需要将后端错误信息弹出即可，如需详细处理的业务则判断config.data.data.errcode
-      Notification({
-        type: "error",
-        title: HTTP_STATUS_TITLE_ERROR,
-        message: config.data.errmsg,
-        duration: 3000
-        // 弹框自动消失时间
-      });
-      return { ...config, data: null };
-    } else {
-      // 成功
-      return config.data;
-    }
+    return config.data || {};
   },
   (error: any) => {
-    Notification({
-      // 基于axiosCreate中validateStatus配置的区间判断此时状态码>=500 或者 浏览器直接报错(比如跨域) 走此弹框。
-      type: "error",
-      title: HTTP_STATUS_TITLE_5XX,
-      message: HTTP_STATUS_MSG_5XX,
-      duration: 3000
-      // 弹框自动消失时间
-    });
+    // loadingInstance.close();
+    // 登录失败|禁用|token失效等相关问题返回401，此处做跳转登录页动作
+    if (error.response.status === 401) {
+      Notification({
+        type: "error",
+        title: HTTP_STATUS_TITLE_ERROR,
+        message: error.response.data.message || HTTP_STATUS_MSG_401,
+        duration: 3000
+      });
+      router.push({ path: PATH_LOGIN });
+    } else if (error.response.status >= 400 && error.response.status < 500) {
+      Notification({
+        type: "error",
+        title: HTTP_STATUS_TITLE_ERROR,
+        message: error.response.data.message || HTTP_STATUS_TITLE_ERROR,
+        duration: 3000
+      });
+    } else {
+      Notification({
+        // 基于axiosCreate中validateStatus配置的区间判断此时状态码>=500 或者 浏览器直接报错(比如跨域) 走此弹框。
+        type: "error",
+        title: HTTP_STATUS_TITLE_5XX,
+        message: HTTP_STATUS_MSG_5XX,
+        duration: 3000
+      });
+    }
+
     return Promise.reject(error.response);
   }
 );

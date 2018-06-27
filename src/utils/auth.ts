@@ -3,8 +3,8 @@ class Auth {
     // 你可以这里做请求做用户验证
 
     // return Promise.reject(true)
-    return Promise.resolve(false)
+    return Promise.resolve(false);
   }
 }
 
-export default Auth
+export default Auth;

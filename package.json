@@ -5,6 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve --open ",
     "build": "vue-cli-service build",
+    "dev-build": "vue-cli-service build --mode development",
+    "staging-build": "vue-cli-service build --mode staging",
     "lint": "vue-cli-service lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
