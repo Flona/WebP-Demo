@@ -3,7 +3,7 @@ const projectRoot = path.resolve(__dirname);
 module.exports = {
   // lintOnSave: false,
   devServer: {
-    proxy: "http://pingfen-api.100tal.com"
+    proxy: "http://localhost:1234"
   },
   chainWebpack: config => {
     // config.plugins.delete("prefetch")
