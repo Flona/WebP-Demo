@@ -1,5 +1,5 @@
 <template>
-    <el-upload :on-error="onErr" :before-upload="beforeUpload" :on-success="onSuccess" class="upload-demo" :data="params" ref="upload" action="http://kunl-test.oss-cn-beijing.aliyuncs.com" :file-list="fileList" :auto-upload="false">
+    <el-upload :on-error="onErr" :before-upload="beforeUpload" :on-success="onSuccess" class="upload-demo" :data="params" ref="upload" action="http://xxx.oss-cn-beijing.aliyuncs.com" :file-list="fileList" :auto-upload="false">
         <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
     </el-upload>
@@ -33,7 +33,7 @@
           return axios
             .post("/oss", {
               uploadDir: "test/", //要存储的路径
-              host: "http://kunl-test.oss-cn-beijing.aliyuncs.com" // host地址
+              host: "http://xxx.oss-cn-beijing.aliyuncs.com" // host地址
             })
             .then(res => {
               // 或者后端签名
