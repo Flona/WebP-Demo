@@ -16,5 +16,15 @@ pipeline {
                 sh 'npm run staging-build' 
             }
         }
+       stage('Deploy') { 
+            steps {
+                echo "Should deploy the dist dir to server"
+            }
+        }
+        stage('Clean') { 
+            steps {
+                cleanWs (deleteDirs: true, patterns: [[pattern: 'node_modules', type: 'EXCLUDE']])
+            }
+        }
     }
 }
