@@ -18,7 +18,10 @@ pipeline {
         }
        stage('Deploy') { 
             steps {
-                echo "Should deploy the dist dir to server"
+                    withCredentials([usernamePassword(credentialsId: '8008e296-6a79-4846-9161-a0ea884f6cc3', passwordVariable: 'pass', usernameVariable: 'name')]) {
+                        sh "scp -v dist ${env.name}@108.160.132.39:/data/CItest/"
+                        echo "${env.pass}"
+                    }
             }
         }
         stage('Clean') { 
