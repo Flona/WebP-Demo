@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:carbon-alpine'
+            image 'node:carbon'
         }
     }
     stages {
@@ -30,7 +30,6 @@ pipeline {
                 
         stage('Deploy') {
             steps {
-
                     sshagent (credentials: ['e9c209ac-5e6b-43d6-9759-e53d98257ce9']) {
                         sh "whoami"
                         sh "scp -v -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no dist root@108.160.132.39:/data"
