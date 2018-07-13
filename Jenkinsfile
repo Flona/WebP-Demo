@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:carbon-alpine' 
-            args '-p 3000:3000' 
+            image 'node:carbon-alpine'
         }
     }
     stages {
@@ -16,18 +15,32 @@ pipeline {
                 sh 'npm run staging-build' 
             }
         }
+
+        stage('UT') { 
+            steps {
+                echo 'should run unit test in this stage' 
+            }
+        }
+
+        stage('E2E Testing') { 
+            steps {
+                echo 'should run E2E cases in this stage' 
+            }
+        }
+                
+        stage('Deploy') {
+            steps {
+
+                    sshagent (credentials: ['e9c209ac-5e6b-43d6-9759-e53d98257ce9']) {
+                        sh "whoami"
+                        sh "scp -v -r -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no dist root@108.160.132.39:/data"
+                    }
+            }
+        }
         stage('Clean') { 
             steps {
                 cleanWs (deleteDirs: true, patterns: [[pattern: 'node_modules', type: 'EXCLUDE']])
             }
-        }
-    }
-     post { 
-        success { 
-            withCredentials([usernamePassword(credentialsId: '8008e296-6a79-4846-9161-a0ea884f6cc3', passwordVariable: 'pass', usernameVariable: 'name')]) {
-                        sh "scp -v dist ${env.name}@108.160.132.39:/data/CItest/"
-                        echo "${env.pass}"
-                    }
         }
     }
 }
