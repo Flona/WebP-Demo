@@ -110,25 +110,5 @@ http.interceptors.response.use(
     return Promise.reject(error.response);
   }
 );
-// 与后端约定后，以下数据返回结构暂时不用。
-// function isSuccess(config: AxiosResponse<any>) {
-//   if (config.data) {
-//     return config.data;             // success === true成功 请求接口会拿到需要的数据
-//   } else {
-//     return isReturn(config);        // 不成功，但是有可能根据config.data.errcode的不同有不同的处理逻辑，函数抽离出去，根据项目更改isReturn函数中内容即可
-//   }
-// }
-// function isReturn(config: AxiosResponse<any>) {
-//   if (config.data.errcode === "1") {        // errcode === '1'时单纯的我只是把后端的errmsg弹了出来
-//     Notification({
-//       type: "error",
-//       title: "哎呀",
-//       message: config.data.errmsg,
-//       duration: 3000   // 弹框自动消失时间
-//     });
-//     return { ...config, data: null };      // 业务处理时判断data为空即可不做任何处理
-//   } else {
-//     return config;                         // 其他情况自己根据实际业务特殊处理去。如上图展示一般
-//   }
-// }
+
 export default http;

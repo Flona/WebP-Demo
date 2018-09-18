@@ -1,11 +1,24 @@
 <template>
-    <p class="page-container">404 page not found</p>
+  <div class="notfound-page">
+    <img :src="notfound" alt="">
+  </div>
 </template>
+<script>
+import notfound from "@assets/img/404.png";
+export default {
+  data() {
+    return {
+      notfound
+    };
+  }
+};
+</script>
 
 <style lang="scss" scoped>
-.page-container {
-  font-size: 20px;
-  text-align: center;
-  color: rgb(192, 204, 218);
+.notfound-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 </style>
